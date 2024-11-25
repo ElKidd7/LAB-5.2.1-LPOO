@@ -1,7 +1,7 @@
 
 package lab.pkg5.pkg2.pkg1.lpoo;
 
-public class Usuario {
+public class Usuario implements Runnable {
     private String nombre;
     private Itinerario itinerario;
 
@@ -18,11 +18,15 @@ public class Usuario {
         return itinerario;
     }
 
-    public void agregarLugarVisitado(LugarVisitado lugar) {
-        itinerario.agregarLugarVisitado(lugar);
-    }
+    @Override
+    public void run() {
+        // Aquí simulamos operaciones concurrentes con el itinerario
+        // Cada usuario agrega un lugar y un gasto de forma concurrente
 
-    public void agregarGasto(Gasto gasto) {
-        itinerario.agregarGasto(gasto);
+        itinerario.agregarLugarVisitado(new LugarVisitado("Paris", "Ciudad del amor"));
+        itinerario.agregarGasto(new Gasto("Hotel", 150.00));
+
+        itinerario.agregarLugarVisitado(new LugarVisitado("Londres", "La ciudad de la lluvia"));
+        itinerario.agregarGasto(new Gasto("Comida", 50.00));
     }
 }
